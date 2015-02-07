@@ -1,0 +1,150 @@
+Total 149 Files
+
+Stand
+Sway
+Swing arms
+Look around
+Pick up box
+Lift box
+Crouch
+Crouch to lie down (not completely flat on the ground)
+Lie down
+Lie to crouch
+Crawl forward
+Crawl backward
+Skip
+Stand to skip
+Skip to stand
+Stand to walk
+Walk to stand
+Walk
+Stand to walk backward
+Walk backward
+Walk backward to stand
+Walk backward,turn around,walk forward
+Walk backward,stop,walk forward
+Walk,turn left 90 midway,walk
+Walk,turn left 45 midway,walk
+Walk,turn left 135 midway,walk
+Walk,turn right 90 midway,walk
+Walk,turn right 45 midway,walk
+Walk,turn right 135 midway,walk
+walk,turn around,walk
+Walk,change direction,walk
+Walk to hop to walk
+Walk to leap to walk
+Walk to pick up box,walk
+Walk with box
+Put down box to walk
+Side step left
+Side step right
+Walk to crouch
+Crouch to walk
+Walk to skip
+Skip to walk
+Stand to run
+Run to stand
+Run
+Run to walk
+Walk to run
+Stand to run backward
+Run backward
+Run backward to stand
+Run backward,turn around,run forward
+Run backward,stop,run forward
+Run,turn left 90 midway,run
+Run,turn left 45 midway,run
+Run,turn left 135 midway,run
+Run,turn right 90 midway,run
+Run,turn right 45 midway,run
+Run,turn right 135 midway,run
+Run,change direction,run
+Run to hop to walk
+Run to jump to walk
+Run to pick up box,run
+Run with box
+Put down box to run
+Quick side step left
+Quick side step right
+Run to crouch
+Crouch to run
+Stand to ready
+Walk to ready
+Run to ready
+Ready to relax
+Ready to walk away
+Ready to run
+Walk to bow
+Bow to ready
+Victory 1
+Warm up to ready to warm up
+Victory 2
+Ready to taunt to ready 1
+Ready to taunt to ready 2
+Crouch to ready
+Ready to crouch
+Switch stance
+Switch stance more
+Jab left
+Turn around right
+Jab right
+Turn around left
+Advance
+Cross left
+Cross right
+Quick advance
+Hook left
+Retreat
+Hook right
+Quick retreat
+Super fast advance
+Upper cut left
+Bounce
+Upper cut right
+Body hook left
+Side step left
+Body hook right
+Side step right
+Back fist left
+Block left high
+Back fist right
+Block left low
+Block right high
+Body cross left
+Block right low
+Body cross right
+Block left middle
+Body jab right
+Block right middle
+Body jab left
+Block middle high
+Block middle low
+Dodge left
+Dodge right
+Duck left
+Duck right
+Male 2 extended 1 (boxing)
+Male 2 extended 2
+Male 2 extended 3
+Male 2 form 1
+Side kick leading left
+Front kick
+Side kick leading right
+Spinning back kick
+Back kick
+Axe kick
+Capoeira
+Round house left
+Round house right
+Round house right 2
+Round house leading left
+Round house leading right
+Crescent left
+Crescent right
+Round house body left
+Round house body right
+Double kick
+Push kick left
+Push kick right
+Reverse spin crescent left
+Reverse spin crescent right

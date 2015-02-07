@@ -1,0 +1,70 @@
+Total 69 files
+
+Stand
+Sway
+Swing arms
+Look around
+Pick up box
+Lift box
+Crouch
+Crouch to lie (not completely flat on the ground)
+Lie down (not completely flat on the ground) to lie down flat on the ground
+Crawl forward
+Crawl Backward
+Skip
+Stand to skip
+Skip to stand
+Stand to walk
+Walk to stand
+Walk
+Stand to walk backward
+Walk backward to stand
+Walk backward
+Walk backward, turn around midway,walk forward
+Walk backward, stop, walk forward
+Walk, turn left 90 midway, walk
+Walk, turn left 45 midway, walk
+Walk, turn left 135 midway, walk
+Walk, turn right 90 midway, walk
+Walk, turn right 45 midway, walk
+Walk, turn right 135 midway, walk
+Walk, turn around, walk
+Walk, turn change direction
+Walk to hop to walk
+Walk to leap to walk
+Walk to pick up box, walk with box
+Walk with box
+Put down box, step over box to walk
+Side step left
+Side step right
+Walk to crouch
+Crouch to walk
+Walk to skip
+Skip to walk
+Stand to run
+Run to stand
+Run
+Run to walk
+Walk to run
+Stand to run backward
+Run backward
+Run backward to stand
+Run backward, turn around, run forward
+Run backward, stop, run forward
+Run,turn left 90 midway,run
+Run,turn left 45 midway,run
+Run,turn left 135 midway,run
+Run,turn right 90 midway,run
+Run,turn right 45 midway,run
+Run,turn right 135 midway,run
+Run,turn around,run
+Run,turn change direction,run
+Run to hop to walk
+Run to jump to walk
+Run to pick up box and keep running
+Run with box
+Put down box to run
+Quick side step left
+Quick side step right
+Run to crouch
+Crouch to run

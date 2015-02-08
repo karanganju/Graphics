@@ -7,11 +7,11 @@ GL_LIB_DIR=/usr/lib/
 OPENGLLIB= -lGL
 GLEWLIB= -lGLEW
 GLFWLIB = -lglfw
-LIBS=$(OPENGLLIB) $(GLEWLIB) $(GLFWLIB) -lm
+LIBS=$(OPENGLLIB) $(GLEWLIB) $(GLFWLIB) -lGLU -lm
 
 BIN=BVHPlayer
 OBJ1=error.o matvec.o
-OBJ2=bvh_tokens.o bvh_joints.o bvh_hierarchy.o bvh.o 
+OBJ2=bvh_tokens.o bvh_joints.o bvh_hierarchy.o bvh.o gl_framework.o
 OBJ3=main.o
 OBJ=$(OBJ1) $(OBJ2) $(OBJ3)
 LIB1=libUtil.a
@@ -61,5 +61,6 @@ bvh_hierarchy.o: bvh_hierarchy.hpp bvh_joints.hpp bvh_tokens.hpp matvec.hpp erro
 bvh_joints.o: bvh_joints.hpp bvh_tokens.hpp matvec.hpp error.hpp
 bvh_tokens.o: bvh_tokens.hpp
 error.o: error.hpp
-main.o: bvh_tokens.hpp bvh.hpp
+main.o: bvh_tokens.hpp bvh.hpp gl_framework.hpp
 matvec.o: matvec.hpp error.hpp
+gl_framework.o: gl_framework.hpp

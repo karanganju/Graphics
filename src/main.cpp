@@ -41,7 +41,8 @@ int main(int argc, char **argv)
       bvh_fig = new bvh::bvh_t(bvhfilename, true); 
       try 
 	{ 
-	  bvh_fig->print_hierarchy(std::cout); 
+	  bvh_fig->print_hierarchy(std::cout);
+    bvh_fig->print_motion(std::cout);
 	}
       catch (util::common::error *e)
 	{ util::common::error::halt_on_error(e); }

@@ -19,22 +19,10 @@ void usage(void)
 }
 
 //-----------------------------------------------------------------------
-void renderGL(bvh::bvh_t* bvh_fig,GLFWwindow* window)
+void renderGL(bvh::bvh_t* bvh_fig)
 {
-  glScalef(0.05,0.05,0.05);
-  bvh_fig->render_canonical_pose();
-  int frames = (bvh_fig->get_motion())->get_frames();
-  while(true)
-  {
-    while(glfwGetTime()-bvh_fig->get_motion()->get_frame_rate()<0.0);
-    glfwSetTime(0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     bvh_fig->render_frame(count);
-    glfwSwapBuffers(window);
-    glfwPollEvents();
-    if(!pause_motion && count<frames) count++;
-  }
-
 }
 
 
@@ -115,20 +103,22 @@ int main(int argc, char **argv)
       framebuffer_size_callback(window, win_width, win_height);
       //Initialize GL state
       initGL();
+      
+      glScalef(0.05,0.05,0.05);
 
-      bool check = true;
+      bvh_fig->render_canonical_pose();
+      int frames = (bvh_fig->get_motion())->get_frames();
+
       while (glfwWindowShouldClose(window) == 0)
       {
-        if(check){
-          glfwSetTime(0);
-          renderGL(bvh_fig,window);
-          check = false;
-        }
-
+        glfwSetTime(0);
+        renderGL(bvh_fig);
         // Swap front and back buffers
         glfwSwapBuffers(window);
         // Poll for and process events
         glfwPollEvents();
+        while(glfwGetTime()-bvh_fig->get_motion()->get_frame_rate()<0.0);
+        if(!pause_motion && count<(frames-1)) count++;
         //glfwSetWindowShouldClose(window, GL_TRUE);
       }
     }

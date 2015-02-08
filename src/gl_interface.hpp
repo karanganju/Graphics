@@ -3,9 +3,10 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
 #include <iostream>
 
+extern bool pause_motion;
+extern int count;
   //! Initialize GL State
   void initGL(void);
  

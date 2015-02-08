@@ -2,11 +2,10 @@
 #include "gl_interface.hpp"
 #include <iostream>
 
-using namespace std;
-
 int win_width;
 int win_height;
-int count=0;
+bool pause_motion = false;
+int count = 0;
 
 //! Initialize GL State
 void initGL(void)
@@ -75,16 +74,24 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	//!Close the window if the ESC key was pressed
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-      glfwSetWindowShouldClose(window, GL_TRUE);
-	/*if (action == GLFW_PRESS || action == GLFW_REPEAT) {
+	//if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+      //glfwSetWindowShouldClose(window, GL_TRUE);
+	if (action == GLFW_PRESS || action == GLFW_REPEAT) {
 		if (key == GLFW_KEY_ESCAPE)	glfwSetWindowShouldClose(window, GL_TRUE);
-		else if (key == GLFW_KEY_F11)
+		else if (key == GLFW_KEY_SPACE)
 		{
-			playback=!playback;
-			glfwSetTime(0);
-			cout<<"Playback mode is "<<playback<<endl;
+			pause_motion = !(pause_motion);
 		}
+		else if (key == GLFW_KEY_RIGHT)
+		{
+			if(pause_motion) count++;
+		}
+		else if (key == GLFW_KEY_LEFT)
+		{
+			if(pause_motion) count--;
+		}
+	}
+	/*
 		else if (key == GLFW_KEY_F12)
 		{
 			recording=!recording;

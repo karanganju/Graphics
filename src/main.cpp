@@ -24,15 +24,15 @@ void renderGL(bvh::bvh_t* bvh_fig,GLFWwindow* window)
   glScalef(0.05,0.05,0.05);
   bvh_fig->render_canonical_pose();
   int frames = (bvh_fig->get_motion())->get_frames();
-  for (int i = 0; i < frames; ++i)
+  while(true)
   {
     while(glfwGetTime()-bvh_fig->get_motion()->get_frame_rate()<0.0);
     glfwSetTime(0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    bvh_fig->render_frame(i);
+    bvh_fig->render_frame(count);
     glfwSwapBuffers(window);
     glfwPollEvents();
-    // break;
+    if(!pause_motion && count<frames) count++;
   }
 
 }

@@ -250,7 +250,7 @@ void joint_t::print(std::ostream &out)
 void joint_t::update_matrix(float *data_channels)
 {
   /* CS775: Implement this method. */
-  double tx=0,ty=0,tz=0;
+  /*double tx=0,ty=0,tz=0;
   util::math::mat44 rx = util::math::mat44::identity3D(),ry = util::math::mat44::identity3D(),rz = util::math::mat44::identity3D();
 
   for(int i = 0; i < channels.num_channels; i++){
@@ -268,4 +268,5 @@ void joint_t::update_matrix(float *data_channels)
   util::math::mat44 translation = util::math::mat44::translation3D(tx,ty,tz);
   util::math::mat44 rotation = (rz*rx)*ry;
   M = rotation*translation;
+  */
 }

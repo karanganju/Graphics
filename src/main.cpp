@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "gl_framework.hpp"
+#include "gl_interface.hpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>

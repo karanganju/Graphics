@@ -1,5 +1,6 @@
 #include "bvh.hpp"
 #include "error.hpp"
+#include "gl_interface.hpp"
 
 using namespace bvh;
 
@@ -114,7 +115,24 @@ void bvh_t::print_motion(std::ostream &out)
 
 void bvh_t::render_pose(joint_t *jtptr)
 {
-  /* CS775: Implement this method */
+  int* abspos = new int[3];
+  jtptr->get_position(abspos);
+  if(jtptr->get_render_mode() == _sphere) {
+    double scale = jtptr->get_render_joint_size();
+    glScalef(scale,scale,scale);
+    GLUquadricObj* quadric = gluNewQuadric();
+    gluSphere(quadric,abspos[0],abspos[1],abspos[2]);
+    glScalef(1.0/scale,1.0/scale,1.0/scale);
+  }
+  if(jtptr->get_joint_type() != _root) {
+    int* parabspos = new int[3];
+    jtptr->get_position(parabspos);
+    glLineWidth(2.5); 
+    glBegin(GL_LINES);
+    glVertex3f(abspos[0],abspos[1],abspos[2]);
+    glVertex3f(parabspos[0],parabspos[1],parabspos[2]);
+    glEnd();
+  }
 }
 
 void bvh_t::render_canonical_pose(void)

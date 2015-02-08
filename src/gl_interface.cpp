@@ -1,5 +1,5 @@
 #include <math.h>
-#include "gl_framework.hpp"
+#include "gl_interface.hpp"
 #include <iostream>
 
 using namespace std;

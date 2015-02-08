@@ -1,0 +1,163 @@
+Joint Name : Hips
+Joint Type : ROOT
+Joint Offset : <0,0,0>
+Joint Absolute Offset : <0,0,0>
+Number of channels : 6
+Channel Order : 0 1 2 5 3 4 
+
+Joint Name : LeftHip
+Joint Type : JOINT
+Joint Offset : <3.43,0,0>
+Joint Absolute Offset : <3.43,0,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : LeftKnee
+Joint Type : JOINT
+Joint Offset : <0,-18.47,0>
+Joint Absolute Offset : <3.43,-18.47,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : LeftAnkle
+Joint Type : JOINT
+Joint Offset : <0,-17.95,0>
+Joint Absolute Offset : <3.43,-36.42,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : 
+Joint Type : END SITE
+Joint Offset : <0,-3.12,0>
+Joint Absolute Offset : <3.43,-39.54,0>
+
+Joint Name : RightHip
+Joint Type : JOINT
+Joint Offset : <-3.43,0,0>
+Joint Absolute Offset : <-3.43,0,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : RightKnee
+Joint Type : JOINT
+Joint Offset : <0,-18.47,0>
+Joint Absolute Offset : <-3.43,-18.47,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : RightAnkle
+Joint Type : JOINT
+Joint Offset : <0,-17.95,0>
+Joint Absolute Offset : <-3.43,-36.42,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : 
+Joint Type : END SITE
+Joint Offset : <0,-3.12,0>
+Joint Absolute Offset : <-3.43,-39.54,0>
+
+Joint Name : Chest
+Joint Type : JOINT
+Joint Offset : <0,4.57,0>
+Joint Absolute Offset : <0,4.57,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : CS_BVH
+Joint Type : JOINT
+Joint Offset : <0,6.57,0>
+Joint Absolute Offset : <0,11.14,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : LeftCollar
+Joint Type : JOINT
+Joint Offset : <1.06,4.19,1.76>
+Joint Absolute Offset : <1.06,15.33,1.76>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : LeftShoulder
+Joint Type : JOINT
+Joint Offset : <5.81,0,0>
+Joint Absolute Offset : <6.87,15.33,1.76>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : LeftElbow
+Joint Type : JOINT
+Joint Offset : <0,-12.08,0>
+Joint Absolute Offset : <6.87,3.25,1.76>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : LeftWrist
+Joint Type : JOINT
+Joint Offset : <0,-9.82,0>
+Joint Absolute Offset : <6.87,-6.57,1.76>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : 
+Joint Type : END SITE
+Joint Offset : <0,-7.37,0>
+Joint Absolute Offset : <6.87,-13.94,1.76>
+
+Joint Name : RightCollar
+Joint Type : JOINT
+Joint Offset : <-1.06,4.19,1.76>
+Joint Absolute Offset : <-1.06,15.33,1.76>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : RightShoulder
+Joint Type : JOINT
+Joint Offset : <-6.06,0,0>
+Joint Absolute Offset : <-7.12,15.33,1.76>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : RightElbow
+Joint Type : JOINT
+Joint Offset : <0,-11.08,0>
+Joint Absolute Offset : <-7.12,4.25,1.76>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : RightWrist
+Joint Type : JOINT
+Joint Offset : <0,-9.82,0>
+Joint Absolute Offset : <-7.12,-5.57,1.76>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : 
+Joint Type : END SITE
+Joint Offset : <0,-7.14001,0>
+Joint Absolute Offset : <-7.12,-12.71,1.76>
+
+Joint Name : Neck
+Joint Type : JOINT
+Joint Offset : <0,4.05,0>
+Joint Absolute Offset : <0,15.19,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : Head
+Joint Type : JOINT
+Joint Offset : <0,5.19,0>
+Joint Absolute Offset : <0,20.38,0>
+Number of channels : 3
+Channel Order : 5 3 4 
+
+Joint Name : 
+Joint Type : END SITE
+Joint Offset : <0,4.14001,0>
+Joint Absolute Offset : <0,24.52,0>
+
+Total number of channels : 60
+Motion Data
+Frames: 856
+Frame Time: 0.0333333
+Data: 

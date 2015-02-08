@@ -1,6 +1,5 @@
 #include "bvh.hpp"
 #include "error.hpp"
-
 using namespace bvh;
 
 //--------------------------------------------------------------------------------
@@ -127,5 +126,20 @@ void bvh_t::render_canonical_pose(void)
 void bvh_t::render_frame(unsigned int frame_number)
 {
   /* CS775: Implement this method */
+  //int data_channels = hierarchy->get_tot_num_channels();
+  float* data = motion->get_data_row(frame_number);
+  std::list<joint_t *>* root = hierarchy->get_joint_list();
+  int count =0;
+  for (std::list<joint_t *>::iterator it=root->begin();it!=root->end();it++)
+  {
+    /* code */
+    int channels = ((*it)->get_channels()).num_channels;
+    float* data_ch = new float();
+    for(int i=0;i<channels;i++){
+      data_ch[i]=data[count];
+      count++;
+    }
+    (*it)->update_matrix(data_ch);
+    render_pose(*it);
+  }
 }
-

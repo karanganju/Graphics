@@ -150,6 +150,7 @@ namespace bvh
     unsigned int get_frames(void);
     double get_frame_rate(void);
     float** get_data(void);
+    float* get_data_row(unsigned int i);
     unsigned int get_data_channels(void);
     
     void set_frames(unsigned int _frames);

@@ -19,9 +19,14 @@ void usage(void)
 }
 
 //-----------------------------------------------------------------------
-void renderGL(void)
+void renderGL(bvh::bvh_t* bvh_fig)
 {
-
+  bvh_fig->render_canonical_pose();
+  int frames = (bvh_fig->get_motion())->get_frames();
+  for (int i = 0; i < frames; ++i)
+  {
+    bvh_fig->render_frame(i);
+  }
 }
 
 
@@ -106,7 +111,7 @@ int main(int argc, char **argv)
 
       while (glfwWindowShouldClose(window) == 0)
       {
-        renderGL();
+        renderGL(bvh_fig);
         // Swap front and back buffers
         glfwSwapBuffers(window);
         // Poll for and process events
@@ -120,3 +125,4 @@ int main(int argc, char **argv)
 }
 
 //-----------------------------------------------------------------------
+  

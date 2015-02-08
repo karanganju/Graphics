@@ -115,7 +115,7 @@ void bvh_t::print_motion(std::ostream &out)
 
 void bvh_t::render_pose(joint_t *jtptr)
 {
-  int* abspos = new int[3];
+  double* abspos = new double[3];
   jtptr->get_position(abspos);
   if(jtptr->get_render_mode() == _sphere) {
     double scale = jtptr->get_render_joint_size();
@@ -125,7 +125,7 @@ void bvh_t::render_pose(joint_t *jtptr)
     glScalef(1.0/scale,1.0/scale,1.0/scale);
   }
   if(jtptr->get_joint_type() != _root) {
-    int* parabspos = new int[3];
+    double* parabspos = new double[3];
     jtptr->get_position(parabspos);
     glLineWidth(2.5); 
     glBegin(GL_LINES);
@@ -137,10 +137,10 @@ void bvh_t::render_pose(joint_t *jtptr)
 
 void bvh_t::render_canonical_pose(void)
 {
-  for(list<joint_t *>::iterator iter=joint_list.begin();iter!=joint_list.end();iter++){
+  for(std::list<joint_t *>::iterator iter=(hierarchy->get_joint_list())->begin();iter!=(hierarchy->get_joint_list())->end();iter++){
     joint_t* jtptr = *iter;
     util::math::vec3 posnode = jtptr->get_absolute_offset();
-    int abspos[3] = {posnode[0],posnode[1],posnode[2]};
+    double abspos[3] = {posnode[0],posnode[1],posnode[2]};
     if(jtptr->get_render_mode() == _sphere) {
       double scale = jtptr->get_render_joint_size();
       glScalef(scale,scale,scale);
@@ -150,7 +150,7 @@ void bvh_t::render_canonical_pose(void)
     }
     if(jtptr->get_joint_type() != _root) {
       util::math::vec3 parposnode = jtptr->get_parent()->get_absolute_offset();
-      int parabspos[3] = {parposnode[0],parposnode[1],parposnode[2]};
+      double parabspos[3] = {parposnode[0],parposnode[1],parposnode[2]};
       glLineWidth(2.5); 
       glBegin(GL_LINES);
       glVertex3f(abspos[0],abspos[1],abspos[2]);
@@ -163,5 +163,20 @@ void bvh_t::render_canonical_pose(void)
 void bvh_t::render_frame(unsigned int frame_number)
 {
   /* CS775: Implement this method */
+  //int data_channels = hierarchy->get_tot_num_channels();
+  float* data = motion->get_data_row(frame_number);
+  std::list<joint_t *>* root = hierarchy->get_joint_list();
+  int count =0;
+  for (std::list<joint_t *>::iterator it=root->begin();it!=root->end();it++)
+  {
+    /* code */
+    int channels = ((*it)->get_channels()).num_channels;
+    float* data_ch = new float();
+    for(int i=0;i<channels;i++){
+      data_ch[i]=data[count];
+      count++;
+    }
+    (*it)->update_matrix(data_ch);
+    render_pose(*it);
+  }
 }
-

@@ -153,6 +153,11 @@ float** motion_t::get_data(void)
   return data;
 }
 
+float* motion_t::get_data_row(unsigned int i)
+{
+  return data[i];
+}
+
 unsigned int motion_t::get_data_channels(void)
 {
   return data_channels;

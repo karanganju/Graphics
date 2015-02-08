@@ -272,7 +272,7 @@ void joint_t::update_matrix(float *data_channels)
   M = rotation*translation;
 }
 
-void joint_t::get_position(int* position){
+void joint_t::get_position(double* position){
   position[0]=absolute_M[util::math::X][util::math::W];
   position[1]=absolute_M[util::math::Y][util::math::W];
   position[2]=absolute_M[util::math::Z][util::math::W];

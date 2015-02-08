@@ -115,6 +115,7 @@ void bvh_t::print_motion(std::ostream &out)
 
 void bvh_t::render_pose(joint_t *jtptr)
 {
+  //std::cout<<"sdd"<<std::endl;
   double* abspos = new double[3];
   jtptr->get_position(abspos);
   if(jtptr->get_render_mode() == _sphere) {
@@ -141,6 +142,7 @@ void bvh_t::render_canonical_pose(void)
     joint_t* jtptr = *iter;
     util::math::vec3 posnode = jtptr->get_absolute_offset();
     double abspos[3] = {posnode[0],posnode[1],posnode[2]};
+    //hierarchy->update_joint_matrix(jtptr,abspos);
     if(jtptr->get_render_mode() == _sphere) {
       double scale = jtptr->get_render_joint_size();
       glScalef(scale,scale,scale);
@@ -171,12 +173,22 @@ void bvh_t::render_frame(unsigned int frame_number)
   {
     /* code */
     int channels = ((*it)->get_channels()).num_channels;
+    //std::cout<<"name is "<<(*it)->get_name()<<" "<<channels<<std::endl;
     float* data_ch = new float();
+    //std::cout<<"in mid "<<std::endl;
     for(int i=0;i<channels;i++){
       data_ch[i]=data[count];
       count++;
+      //std::cout<<data_ch[i]<<" "<<std::endl;
     }
-    (*it)->update_matrix(data_ch);
+    double* abspos = new double[3];
+    (*it)->get_position(abspos);
+    //std::cout<<"before "<<abspos[0]<<" "<<abspos[1]<<" "<<abspos[2]<<std::endl;
+    
+    hierarchy->update_joint_matrix((*it),data_ch);
+
+    (*it)->get_position(abspos);
+    //std::cout<<"after "<<abspos[0]<<" "<<abspos[1]<<" "<<abspos[2]<<std::endl;
     render_pose(*it);
   }
 }

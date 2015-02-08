@@ -652,6 +652,8 @@ namespace util
       //! Print the matrix to a file
       void print(FILE *file, std::string name);
 
+      void printmat();
+
       //! Swap rows i and j
       void swap_rows(int i, int j);
 

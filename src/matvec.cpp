@@ -830,6 +830,14 @@ namespace util
 	}
     }
     
+     void mat44::printmat()
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            printf("%lf %lf %lf %lf\n", row[i][0],row[i][1],row[i][2],row[i][3]);
+        }
+    }
+
     void mat44::swap_rows(int i, int j)
     {
       vec4 t;

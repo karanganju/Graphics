@@ -221,8 +221,8 @@ void motion_t::print(std::ostream &out)
   out<<"Data: "<<std::endl;
   for(unsigned int i = 0; i < frames; i++)
     {
-      for(unsigned int j = 0; j < data_channels; j++)
-	out<<data[i][j]<<" ";
-      out<<std::endl;
+      for(unsigned int j = 0; j < data_channels; j++);
+	//out<<data[i][j]<<" ";
+     // out<<std::endl;
     }
 }

@@ -270,4 +270,5 @@ void joint_t::update_matrix(float *data_channels)
   util::math::mat44 rotation = rx*ry;
   rotation = rz*rotation;
   M = rotation*translation;
+  
 }

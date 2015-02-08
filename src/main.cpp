@@ -26,6 +26,8 @@ void renderGL(bvh::bvh_t* bvh_fig,GLFWwindow* window)
   int frames = (bvh_fig->get_motion())->get_frames();
   for (int i = 0; i < frames; ++i)
   {
+    while(glfwGetTime()-bvh_fig->get_motion()->get_frame_rate()<0.0);
+    glfwSetTime(0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     bvh_fig->render_frame(i);
     glfwSwapBuffers(window);
@@ -100,7 +102,8 @@ int main(int argc, char **argv)
       
       //! Make the window's context current 
       glfwMakeContextCurrent(window);
-      
+      glfwSetTime(0);
+
       //Keyboard Callback
       glfwSetKeyCallback(window, key_callback);
       //Framebuffer resize callback
@@ -113,14 +116,15 @@ int main(int argc, char **argv)
       //Initialize GL state
       initGL();
 
-      glfwSetTime(0);
       bool check = true;
       while (glfwWindowShouldClose(window) == 0)
       {
         if(check){
-        renderGL(bvh_fig,window);
-        check = false;
-      }
+          glfwSetTime(0);
+          renderGL(bvh_fig,window);
+          check = false;
+        }
+
         // Swap front and back buffers
         glfwSwapBuffers(window);
         // Poll for and process events

@@ -21,16 +21,16 @@ void usage(void)
 //-----------------------------------------------------------------------
 void renderGL(bvh::bvh_t* bvh_fig,GLFWwindow* window)
 {
-  glScalef(0.1,0.1,0.1);
+  glScalef(0.05,0.05,0.05);
   bvh_fig->render_canonical_pose();
   int frames = (bvh_fig->get_motion())->get_frames();
   for (int i = 0; i < frames; ++i)
   {
-    //std::cout<<i<<std::endl;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     bvh_fig->render_frame(i);
     glfwSwapBuffers(window);
-        // Poll for and process events
     glfwPollEvents();
+    // break;
   }
 
 }
@@ -114,15 +114,18 @@ int main(int argc, char **argv)
       initGL();
 
       glfwSetTime(0);
-
+      bool check = true;
       while (glfwWindowShouldClose(window) == 0)
       {
+        if(check){
         renderGL(bvh_fig,window);
+        check = false;
+      }
         // Swap front and back buffers
         glfwSwapBuffers(window);
         // Poll for and process events
         glfwPollEvents();
-        glfwSetWindowShouldClose(window, GL_TRUE);
+        //glfwSetWindowShouldClose(window, GL_TRUE);
       }
     }
   catch (util::common::error *e)

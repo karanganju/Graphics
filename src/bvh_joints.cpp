@@ -28,7 +28,7 @@ joint_t::joint_t()
   offset = offset_t(0.0, 0.0, 0.0);
   absolute_offset = offset_t(0.0, 0.0, 0.0);
   parent = NULL;
-  render_joint_size = 5.0;
+  render_joint_size = 1.0;
   render_mode = _sphere;
 }
 
@@ -250,8 +250,13 @@ void joint_t::print(std::ostream &out)
 void joint_t::update_matrix(float *data_channels)
 {
   /* CS775: Implement this method. */
-  double tx=0,ty=0,tz=0;
-  util::math::mat44 rx = util::math::mat44::identity3D(),ry = util::math::mat44::identity3D(),rz = util::math::mat44::identity3D();
+  util::math::vec3 off = offset; 
+  double tx=offset[0],ty=offset[1],tz=offset[2];
+  util::math::mat44 r[3];
+  r[0] = util::math::mat44::identity3D();
+  r[1] = util::math::mat44::identity3D();
+  r[2] = util::math::mat44::identity3D();
+  int count=0;
   util::math::vec3 xax=util::math::vec3(1,0,0),yax=util::math::vec3(0,1,0),zax=util::math::vec3(0,0,1);
 
   for(int i = 0; i < channels.num_channels; i++){
@@ -260,18 +265,16 @@ void joint_t::update_matrix(float *data_channels)
       case _xpos: tx=data_channels[i]; break;
       case _ypos: ty=data_channels[i]; break;
       case _zpos: tz=data_channels[i]; break;
-      case _xrot: rx=util::math::mat44::rotation3D(xax,data_channels[i]); break;
-      case _yrot: ry=util::math::mat44::rotation3D(yax,data_channels[i]); break;
-      case _zrot: rz=util::math::mat44::rotation3D(zax,data_channels[i]); break;
+      case _xrot: r[count]=util::math::mat44::rotation3D(xax,data_channels[i]); count++; break;
+      case _yrot: r[count]=util::math::mat44::rotation3D(yax,data_channels[i]); count++; break;
+      case _zrot: r[count]=util::math::mat44::rotation3D(zax,data_channels[i]); count++; break;
     }
   }
   util::math::mat44 translation = util::math::mat44::translation3D(tx,ty,tz);
-  util::math::mat44 rotation = rx*ry;
-  rotation = rz*rotation;
+  util::math::mat44 rotation = r[1]*r[2];
+  rotation = r[0]*rotation;
   M = translation*rotation;
 }
-
-
 
 void joint_t::get_position(double* position){
   position[0]=absolute_M[util::math::X][util::math::W];

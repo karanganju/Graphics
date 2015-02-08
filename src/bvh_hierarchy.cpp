@@ -112,21 +112,15 @@ void hierarchy_t::print_lin(std::ostream &out)
 void hierarchy_t::update_joint_matrix(joint_t *jtptr, float *joint_data_channels)
 {
     /* CS775: Implement this method */
-  //std::cout<<"Atleast Here"<<std::endl;
   jtptr->update_matrix(joint_data_channels);
-   //std::cout<<"Atleast Here 2"<<std::endl;
-   
   if(jtptr->get_joint_type() == _root){
     jtptr->set_absolute_M(jtptr->get_M());
-    //std::cout<<"Here "<<joint_data_channels[0]<<std::endl;
   }
   else {
-    util::math::mat44 temp = (jtptr->get_parent())->get_absolute_M();
-    //std::cout<<"Atleast Here 3"<<std::endl;
+    util::math::mat44 temp = jtptr->get_parent()->get_absolute_M();
     util::math::mat44 temp2 = jtptr->get_M();
     jtptr->set_absolute_M(temp*temp2);
   }
-   //std::cout<<"Atleast Here 4 "<<std::endl;
 }
 
 //--------------------------------------------------------------------------------

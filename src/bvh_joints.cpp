@@ -28,7 +28,7 @@ joint_t::joint_t()
   offset = offset_t(0.0, 0.0, 0.0);
   absolute_offset = offset_t(0.0, 0.0, 0.0);
   parent = NULL;
-  render_joint_size = 1.0;
+  render_joint_size = 5.0;
   render_mode = _sphere;
 }
 
@@ -265,12 +265,13 @@ void joint_t::update_matrix(float *data_channels)
       case _zrot: rz=util::math::mat44::rotation3D(zax,data_channels[i]); break;
     }
   }
-
   util::math::mat44 translation = util::math::mat44::translation3D(tx,ty,tz);
   util::math::mat44 rotation = rx*ry;
   rotation = rz*rotation;
-  M = rotation*translation;
+  M = translation*rotation;
 }
+
+
 
 void joint_t::get_position(double* position){
   position[0]=absolute_M[util::math::X][util::math::W];

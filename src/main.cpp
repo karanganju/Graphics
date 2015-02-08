@@ -111,14 +111,26 @@ int main(int argc, char **argv)
 
       while (glfwWindowShouldClose(window) == 0)
       {
+        glPushMatrix();
         glfwSetTime(0);
+        if(cam_follow) {
+          util::math::mat44 inv = (bvh_fig->get_hierarchy()->get_root_ptr()->get_absolute_M()).inverse();
+          float arr[4][4];
+          for(int i=0;i<4;i++) for(int j=0;j<4;j++) arr[i][j]=inv[i][j];
+          // glTranslatef(0,0,-1000000);
+          glMultMatrixf(*arr);
+        }
+        else {
+          glTranslatef(0,-50,-100);
+        }
         renderGL(bvh_fig);
+        glPopMatrix();
         // Swap front and back buffers
         glfwSwapBuffers(window);
         // Poll for and process events
         glfwPollEvents();
-        while(glfwGetTime()-bvh_fig->get_motion()->get_frame_rate()<0.0);
         if(!pause_motion && count<(frames-1)) count++;
+        while(glfwGetTime()-bvh_fig->get_motion()->get_frame_rate()<0.0);
         //glfwSetWindowShouldClose(window, GL_TRUE);
       }
     }

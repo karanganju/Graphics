@@ -4,7 +4,7 @@
 
 int win_width;
 int win_height;
-bool pause_motion = false;
+bool pause_motion = false,cam_follow = false;
 int count = 0;
 
 //! Initialize GL State
@@ -53,6 +53,10 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		else if (key == GLFW_KEY_LEFT)
 		{
 			if(pause_motion) count--;
+		}
+		else if (key == GLFW_KEY_TAB)
+		{
+			cam_follow = !cam_follow;
 		}
 	}
 }

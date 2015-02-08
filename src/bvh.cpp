@@ -137,10 +137,28 @@ void bvh_t::render_pose(joint_t *jtptr)
 
 void bvh_t::render_canonical_pose(void)
 {
-  /* CS775: Implement this method */
+  for(list<joint_t *>::iterator iter=joint_list.begin();iter!=joint_list.end();iter++){
+    joint_t* jtptr = *iter;
+    util::math::vec3 posnode = jtptr->get_absolute_offset();
+    int abspos[3] = {posnode[0],posnode[1],posnode[2]};
+    if(jtptr->get_render_mode() == _sphere) {
+      double scale = jtptr->get_render_joint_size();
+      glScalef(scale,scale,scale);
+      GLUquadricObj* quadric = gluNewQuadric();
+      gluSphere(quadric,abspos[0],abspos[1],abspos[2]);
+      glScalef(1.0/scale,1.0/scale,1.0/scale);
+    }
+    if(jtptr->get_joint_type() != _root) {
+      util::math::vec3 parposnode = jtptr->get_parent()->get_absolute_offset();
+      int parabspos[3] = {parposnode[0],parposnode[1],parposnode[2]};
+      glLineWidth(2.5); 
+      glBegin(GL_LINES);
+      glVertex3f(abspos[0],abspos[1],abspos[2]);
+      glVertex3f(parabspos[0],parabspos[1],parabspos[2]);
+      glEnd();
+    }
+  }
 }
-
-
 
 void bvh_t::render_frame(unsigned int frame_number)
 {

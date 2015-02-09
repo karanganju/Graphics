@@ -114,11 +114,8 @@ int main(int argc, char **argv)
         glPushMatrix();
         glfwSetTime(0);
         if(cam_follow) {
-          util::math::mat44 inv = (bvh_fig->get_hierarchy()->get_root_ptr()->get_absolute_M()).inverse();
-          float arr[4][4];
-          for(int i=0;i<4;i++) for(int j=0;j<4;j++) arr[i][j]=inv[i][j];
-          // glTranslatef(0,0,-1000000);
-          glMultMatrixf(*arr);
+          util::math::mat44 matri = bvh_fig->get_hierarchy()->get_root_ptr()->get_absolute_M();
+          glTranslatef(-matri[0][3],-matri[1][3],-matri[2][3]+50);
         }
         else {
           glTranslatef(0,-50,-100);

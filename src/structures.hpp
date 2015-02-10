@@ -11,10 +11,7 @@
 #define hand 			10
 #define connect			11
 #define tire			12
-#define room			13
-#define armor			14
-#define frontwheel		15
+#define armor			13
+#define frontwheel		14
 
-void glCube(GLfloat side);
 void init_structures(void);
-void init_room(void);

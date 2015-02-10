@@ -72,7 +72,6 @@ void glFFrustrum(char axis,GLfloat radius1,GLfloat radius2,GLfloat height,GLint 
 	  gluDisk(quadric2,0,radius1,slices,10);
 	  glPopMatrix();
 	  glTranslatef(0,0,height);
-	  GLUquadricObj* quadric3 = gluNewQuadric();
 	  glRotatef(180,0,1,0);
 	  gluDisk(quadric2,0,radius2,slices,20);
 	glPopMatrix();
@@ -436,7 +435,6 @@ void struct_forearm(void)
 	
 	glNewList(forearm,GL_COMPILE);
 	glPushMatrix();
-		GLUquadricObj* quadric = gluNewQuadric();
 		glTranslatef(-1.2,-0.65,0.0);
 		//glTranslatef(-0.0,-0.7,0.0);
 		//glScalef(,0.5,0.5);
@@ -493,7 +491,7 @@ void struct_connect(void)
 		
 		SetMaterial(mat_specularGRAY, mat_ambientGRAY, mat_diffuseGRAY, mat_shininessGRAY);
 		glPushMatrix();
-			glRotatef(15,0,0,1);
+			// glRotatef(15,0,0,1);
 			glTranslatef(-0.1,-0.03,-0.015);
 			glScalef(0.03,-0.1,0.1);
 			glFFrustrum('y',0.35,0.35,3.5,30);
@@ -532,7 +530,6 @@ void struct_frontwheel(void)
 		SetMaterial(mat_specularRED, mat_ambientRED, mat_diffuseRED, mat_shininessRED);
 		glScalef(0.5,0.5,0.5);
 
-		GLUquadricObj* quadric = gluNewQuadric();
 		glTranslatef(0.0,0.05,0.0);
 		glColor3ub(255,0,0);
 		
@@ -603,7 +600,7 @@ void struct_leg(void)
 		
 		glTranslatef(0.4,-2.3,0.0);
 		glScalef(2.0,1.3,2.0);
-		glRotatef(3,0,0,1);
+		// glRotatef(3,0,0,1);
 		SetMaterial(mat_specularGRAY, mat_ambientGRAY, mat_diffuseGRAY, mat_shininessGRAY);
 		glColor3ub(128,128,128);
 		GLUquadricObj* quadric = gluNewQuadric();
@@ -627,7 +624,7 @@ void struct_foot(void)
 		
 		glTranslatef(0.4,-2.3,0.0);
 		glScalef(2.0,1.3,2.0);
-		glRotatef(3,0,0,1);
+		// glRotatef(3,0,0,1);
 		GLUquadricObj* quadric = gluNewQuadric();
 		
 		glTranslatef(0.0,-0.5,0.0);
@@ -661,7 +658,7 @@ void struct_thigh(void)
 		glTranslatef(-0.03,0.01,0.0);
 		SetMaterial(mat_specularWHITE, mat_ambientWHITE, mat_diffuseWHITE, mat_shininessWHITE);
 		glColor3ub(255,255,255);
-		glRotatef(-8,0,0,1);
+		// glRotatef(-8,0,0,1);
 		glFFrustrum('y',0.064,0.064,0.55,8);
 
 	glPopMatrix();	
@@ -680,16 +677,11 @@ void struct_head(void)
 		glScalef(0.25,2.0,0.3);
 		GLUquadricObj* quadric = gluNewQuadric();
 		gluSphere(quadric,0.5,10,10);
-		glPushMatrix();
-			glTranslatef(0,0,0);
-			//glFFrustrum('y',0.25,0.25,0.8,10);
-		glPopMatrix();
 		SetMaterial(mat_specularBLUE, mat_ambientBLUE, mat_diffuseBLUE, mat_shininessBLUE);
 		glColor3ub(0,0,255);
 		glTranslatef(0.0,0.2,0.2);
 		glScalef(0.8,0.4,0.5);
 		glCube(1.0);
-		
 	glPopMatrix();
 	glEndList();
 }
@@ -704,7 +696,6 @@ void struct_neck(void)
 		glColor3ub(255,255,255);
 		glTranslatef(0,5.3,0);
 		glScalef(0.3,0.5,0.5);
-		GLUquadricObj* quadric = gluNewQuadric();
 		glPushMatrix();
 			glFFrustrum('y',0.25,0.25,0.8,10);
 		glPopMatrix();

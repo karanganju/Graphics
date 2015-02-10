@@ -1,5 +1,6 @@
 #include "bvh_joints.hpp"
 #include "error.hpp"
+#include "structures.hpp"
 
 using namespace bvh;
 
@@ -38,6 +39,11 @@ joint_t::~joint_t()
 std::string joint_t::get_name(void)
 { 
   return name;
+}
+
+int joint_t::get_tname(void)
+{ 
+  return tname;
 }
 
 offset_t joint_t::get_offset(void)
@@ -93,6 +99,11 @@ joint_render_mode joint_t::get_render_mode(void)
 void joint_t::set_name(std::string _name)
 {
   name = _name;
+}
+
+void joint_t::set_tname(int _name)
+{
+  tname = _name;
 }
 
 void joint_t::set_offset(offset_t _offset)
@@ -166,9 +177,27 @@ void joint_t::read(std::ifstream &inp, std::string strtoken)
     }
   else
     throw new util::common::warning_error("(bvh::read) : Missing 'ROOT/JOINT/End Site' tag in bvh file");
-
+  
   if (joint_type != _endsite) inp>>name;
+  else if(parent->name == "LeftHand" || parent->name == "RightHand") tname= connect;
 
+  if(name == "ToSpine") tname = bust;
+  else if (name == "Hips")  tname = pelvis;
+  else if (name == "Neck")  tname = neck;
+  else if (name == "Head")  tname = head;
+  else if (name == "LeftArm")  tname = arm;
+  else if (name == "RightArm") tname = arm;
+  else if (name == "LeftForeArm") tname = forearm;
+  else if (name == "RightForeArm") tname = forearm;
+  else if (name == "LeftHand") tname = hand;
+  else if (name == "RightHand") tname = hand;
+  else if (name == "LeftUpLeg") tname = thighs;
+  else if (name == "RightUpLeg") tname = thighs;
+  else if (name == "LeftFoot") tname = foot;
+  else if (name == "RightFoot") tname = foot;
+  else if (name == "LeftLeg") tname = leg;
+  else if (name == "RightLeg") tname = leg;
+  else tname = -1;
   inp>>strtoken;
 
   if (token_map_array::get_token(strtoken) != _CURLY_BRACE_OPEN)
@@ -214,8 +243,8 @@ void joint_t::read(std::ifstream &inp, std::string strtoken)
       joint_t* newchild = new joint_t;
       try
 	{
+    newchild->parent = this;
 	  newchild->read(inp, strtoken);
-	  newchild->parent = this;
 	}
       catch (util::common::error *e)
 	{

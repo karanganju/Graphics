@@ -4,54 +4,6 @@
 #include "gl_interface.hpp"
 #include <cmath>
 
-//! Constants
-float bust_angle_y=0.0f;
-float bust_angle_x=0.0f;
-float height_z = 59.0f;
-float armor_angle =158.0f;
-float right_arm_angle=0.0f;
-float left_arm_angle=0.0f;
-float right_arm_angle_z=0.0f;
-float left_arm_angle_z=0.0f;
-float right_forearm_angle=0.0f;
-float left_forearm_angle=0.0f;
-float left_thigh_angle=0.0f;
-float right_thigh_angle=0.0f;
-float left_thigh_angle_y=0.0f;
-float right_thigh_angle_y=0.0f;
-float right_leg_angle=0.0f;
-float left_leg_angle=0.0f;
-float right_leg_angle_y=0.0f;
-float left_leg_angle_y=0.0f;
-
-float right_connect_angle=0.0f;
-float right_tier_angle=0.0f;
-
-float left_connect_angle=0.0f;
-float left_tier_angle=0.0f;
-
-unsigned int *tex= new unsigned int [10];
-
-bool lLight=true, rLight=true, right_spot=false, left_spot=false;
-bool recording=false;
-bool playback=false;
-
-unsigned int framenum=0;
-
-int rotateside = 0;
-//2.95;
-
-double piover180 = 0.0174532925;
-float camera1_x=0.0f;
-float camera1_y=0.0f;
-float camera1_z=0.0f;
-float camera1_ay=0.0f;
-
-float bot_x=0.0f,bot_z=0.0f,bot_ay=90.0f;
-int cam=1;
-
-
-// unsigned int texture[0];
 //! Materials
 GLfloat mat_specularWHITE[] ={255.0,255.0,255.0,1.0};
 GLfloat mat_ambientWHITE[] ={255.0,255.0,255.0,1.0};

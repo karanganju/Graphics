@@ -47,7 +47,8 @@ namespace bvh
   protected:
     //! The joint name
     std::string name;
-    
+    int tname;
+
     //! The relative joint offset 
     /*! The joint offset relative to its parent. This defines
      *  the position of the joint when the skeleton is in the
@@ -111,6 +112,7 @@ namespace bvh
     //@{
     //! Accessor method
     std::string get_name(void);
+    int get_tname(void);
     offset_t get_offset(void);
     channel_t get_channels(void);
     std::list<joint_t *>* get_childlist(void);
@@ -123,6 +125,7 @@ namespace bvh
     joint_render_mode get_render_mode(void);
     
     void set_name(std::string _name);
+    void set_tname(int _name);
     void set_offset(offset_t _offset);
     void set_channels(channel_t _channels);
     void set_childlist(std::list<joint_t *> _childlist);

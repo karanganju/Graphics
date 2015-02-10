@@ -7,6 +7,7 @@
 
 extern bool pause_motion;
 extern bool cam_follow;
+extern bool skeleton;
 extern int count;
   //! Initialize GL State
   void initGL(void);

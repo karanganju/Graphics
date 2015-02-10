@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "gl_interface.hpp"
+#include "structures.hpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>
@@ -103,10 +104,14 @@ int main(int argc, char **argv)
       framebuffer_size_callback(window, win_width, win_height);
       //Initialize GL state
       initGL();
-      
-      glScalef(0.05,0.05,0.05);
+      init_structures();
+      glScalef(0.01,0.01,0.01);
+
 
       bvh_fig->render_canonical_pose();
+      glfwSwapBuffers(window);
+        // Poll for and process events
+      glfwPollEvents();
       int frames = (bvh_fig->get_motion())->get_frames();
 
       while (glfwWindowShouldClose(window) == 0)
@@ -129,6 +134,7 @@ int main(int argc, char **argv)
         if(!pause_motion && count<(frames-1)) count++;
         while(glfwGetTime()-bvh_fig->get_motion()->get_frame_rate()<0.0);
         //glfwSetWindowShouldClose(window, GL_TRUE);
+        
       }
     }
   catch (util::common::error *e)

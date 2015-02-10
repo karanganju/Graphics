@@ -117,27 +117,49 @@ void bvh_t::render_pose(joint_t *jtptr)
 {
   double* abspos = new double[3];
   jtptr->get_position(abspos);
-  if(jtptr->get_render_mode() == _sphere) {
-    double scale = jtptr->get_render_joint_size();
-    glPushMatrix();
-      glColor3f(0,1,0);    
-      GLUquadricObj* quadric = gluNewQuadric();
-      glTranslatef(abspos[0],abspos[1],abspos[2]);
-      gluSphere(quadric,scale,100,100);
-    glPopMatrix();
+  if(skeleton){
+    if(jtptr->get_render_mode() == _sphere) {
+      double scale = jtptr->get_render_joint_size();
+      glPushMatrix();
+        glColor3f(0,1,0);    
+        GLUquadricObj* quadric = gluNewQuadric();
+        glTranslatef(abspos[0],abspos[1],abspos[2]);
+        gluSphere(quadric,scale,100,100);
+      glPopMatrix();
+    }
+    if(jtptr->get_joint_type() != _root) {
+      double* parabspos = new double[3];
+      jtptr->get_parent()->get_position(parabspos);
+      glPushMatrix();
+        glLineWidth(2.5);
+        glColor3f(1,0,0);
+        glBegin(GL_LINES);
+        glVertex3f(abspos[0],abspos[1],abspos[2]);
+        glVertex3f(parabspos[0],parabspos[1],parabspos[2]);
+        glEnd();
+      glPopMatrix();
+    }
   }
-  if(jtptr->get_joint_type() != _root) {
-    double* parabspos = new double[3];
-    jtptr->get_parent()->get_position(parabspos);
-    glPushMatrix();
-      glLineWidth(2.5);
-      glColor3f(1,0,0);
-      glBegin(GL_LINES);
-      glVertex3f(abspos[0],abspos[1],abspos[2]);
-      glVertex3f(parabspos[0],parabspos[1],parabspos[2]);
-      glEnd();
-    glPopMatrix();
-  }
+  else if(jtptr->get_tname()!=-1){
+      glPushMatrix();
+      {
+        glTranslatef(abspos[0],abspos[1],abspos[2]);
+        int num = jtptr->get_tname();
+        util::math::mat44 inv = jtptr->get_absolute_M();
+        float arr[16];
+          for (int i = 0; i < 4; ++i)
+          {
+            for (int j = 0; j < 4; ++j)
+            {
+               arr[i+4*j] = inv[i][j];
+            }
+          }
+        glMultMatrixf(arr);
+        glScalef(140,140,140);
+        glCallList(num);
+      }
+      glPopMatrix();
+    }
 }
 
 void bvh_t::render_canonical_pose(void)
@@ -146,25 +168,36 @@ void bvh_t::render_canonical_pose(void)
     joint_t* jtptr = *iter;
     util::math::vec3 posnode = jtptr->get_absolute_offset();
     double abspos[3] = {posnode[0],posnode[1],posnode[2]};
-    if(jtptr->get_render_mode() == _sphere) {
-      double scale = jtptr->get_render_joint_size();
-      glPushMatrix();
-        glColor3f(0,1,0);
-        GLUquadricObj* quadric = gluNewQuadric();
-        glTranslatef(abspos[0],abspos[1],abspos[2]);
-        gluSphere(quadric,scale,100,100);
-      glPopMatrix();
+    if(skeleton){
+      if(jtptr->get_render_mode() == _sphere) {
+        double scale = jtptr->get_render_joint_size();
+        glPushMatrix();
+          glColor3f(0,1,0);
+          GLUquadricObj* quadric = gluNewQuadric();
+          glTranslatef(abspos[0],abspos[1],abspos[2]);
+          gluSphere(quadric,scale,100,100);
+        glPopMatrix();
+      }
+      if(jtptr->get_joint_type() != _root) {
+        util::math::vec3 parposnode = jtptr->get_parent()->get_absolute_offset();
+        double parabspos[3] = {parposnode[0],parposnode[1],parposnode[2]};
+        glPushMatrix();
+          glLineWidth(2.5); 
+          glColor3f(1,0,0);
+          glBegin(GL_LINES);
+          glVertex3f(abspos[0],abspos[1],abspos[2]);
+          glVertex3f(parabspos[0],parabspos[1],parabspos[2]);
+          glEnd();
+        glPopMatrix();
+      }
     }
-    if(jtptr->get_joint_type() != _root) {
-      util::math::vec3 parposnode = jtptr->get_parent()->get_absolute_offset();
-      double parabspos[3] = {parposnode[0],parposnode[1],parposnode[2]};
+    else if(jtptr->get_tname()!=-1){
       glPushMatrix();
-        glLineWidth(2.5); 
-        glColor3f(1,0,0);
-        glBegin(GL_LINES);
-        glVertex3f(abspos[0],abspos[1],abspos[2]);
-        glVertex3f(parabspos[0],parabspos[1],parabspos[2]);
-        glEnd();
+      {
+        glTranslatef(abspos[0],abspos[1],abspos[2]);
+        int num = jtptr->get_tname();
+        glCallList(num);
+      }
       glPopMatrix();
     }
   }
